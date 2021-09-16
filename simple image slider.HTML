@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-1.12.3.js" integrity="sha256-1XMpEtA4eKXNNpXcJ1pmMPs8JV+nwLdEqwiJeCQEkyc=" crossorigin="anonymous"></script>
+    <div class=slider>
+        <div class=controls>
+            <div class=up>
+                <i class="bi bi-arrow-up-square-fill"></i>
+            </div>
+            <div class=down>
+                <i class="bi bi-arrow-down-square-fill"></i>
+            </div>
+        </div>
+        <div class=wrapper>
+            <div class="left">
+                <div>
+                    <h2>Netherlands</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, id unde architecto, quos perspiciatis blanditiis quam et, aut reprehenderit dolor temporibus nemo laudantium vero eligendi nulla. Omnis tenetur fugiat nobis.</p>
+                </div>
+                <div>
+                    <h2>Paris, France</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem fuga asperiores laudantium nisi deserunt! Suscipit ratione maiores cupiditate sint labore? Cumque distinctio laudantium esse error laborum in ea necessitatibus omnis?</p>
+                </div>
+                <div>
+                    <h2>Time Square, EUA</h2>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. A unde ducimus, recusandae suscipit provident atque neque aut impedit dolorum veniam ullam reiciendis in corrupti commodi repellendus. Veniam corporis fugiat architecto.</p>
+                </div>
+                <div>
+                    <h2>Pompeii, Italy</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, vero earum! Inventore commodi laudantium rem pariatur excepturi animi sequi quos hic sed praesentium, aspernatur odit aperiam itaque labore! Doloribus, pariatur!</p>
+
+                </div>
+            </div>
+            <div class="right">
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Ruins_of_Pompeii_with_the_Vesuvius.jpg/1200px-Ruins_of_Pompeii_with_the_Vesuvius.jpg">
+                </div>
+                <div>
+                    <img src="https://visita.ai/wp-content/uploads/2021/02/times-square.jpg">
+                </div>
+                <div>
+                    <img src="https://www.macquarie.com/tw/en/perspectives/macquarie-in-france-exploring-the-investment-landscape.thumb.800.480.png?ck=1607335171">
+                </div>
+                <div>
+                    <img src="https://static.toiimg.com/thumb/73934646/the-Netherlands.jpg?width=1200&height=900">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        *{
+          
+            margin: 0px;
+            padding:0px;
+            box-sizing: border-box;
+        }
+        .slider{
+          font-family: "Comic Sans MS", "Comic Sans", cursive;
+            width: 100%;
+            height: 100vh;
+        }
+        .controls{
+            position: absolute;
+            top:50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            z-index: 2;
+        }
+        .controls > div {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 20px;
+            cursor: pointer
+        }
+        .controls > .up{
+            top: 0px;
+            right: 0px;
+            background: #fff;
+            color: #111;
+            border: 1px solid rgba(0, 0, 0, .8)
+
+        }
+        .controls > .down{
+            bottom: 0px;
+            left: 0px;
+            background: #111;
+            color: #fff;
+            border: 1px solid white
+        }
+        .wrapper {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            color: white;
+            background: #272727;
+        }
+        .wrapper .left, .wrapper .right{
+            width: 50%;
+            overflow: hidden;
+
+        }
+        .wrapper .left > div, .wrapper .right > div{
+            width: 100%;
+            height: 100%;
+            transition: all 500ms ease-in-out;
+        }
+        .wrapper .left > div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 100px 0 50px;
+        }
+        .wrapper .left > div h2{
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+        .wrapper .left > div p {
+            color: #555;
+            font-size: 18px;
+
+        }
+        .wrapper .right > div img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .wrapper .right div:nth-child(1){
+            margin-top: -300vh;
+        }
+    </style>
+    <script>
+        let currentSlider = 0;
+        let totalSlides = $(".wrapper .left > div").length - 1;
+
+        $(".controls .up").click(function(){
+            if (currentSlider == 0){
+                return;
+            }
+            currentSlider--;
+            document.querySelector(".left div").style.marginTop = `${currentSlider*-100}vh`;
+            document.querySelector(".right div").style.marginTop = `${(totalSlides - currentSlider)*-100}vh`;
+        });
+        
+        $(".controls .down").click(function(){
+            if (currentSlider == totalSlides){
+                return;
+            }
+            currentSlider++;
+            document.querySelector(".left div").style.marginTop = `${currentSlider*-100}vh`;
+            document.querySelector(".right div").style.marginTop = `${(totalSlides - currentSlider)*-100}vh`;
+        });
+
+    </script>
+</body>
+</html>
